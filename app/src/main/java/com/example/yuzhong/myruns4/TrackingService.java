@@ -66,7 +66,7 @@ public class TrackingService extends Service {
 
     private final LocationListener locationListener = new LocationListener() {
         public void onLocationChanged(Location location) {
-            Log.d("Hello", "lLLL " +  location.getLatitude());
+//            Log.d("Hello", "lLLL " +  location.getLatitude());
             updateWithNewLocation(location);
         }
 
@@ -129,7 +129,7 @@ public class TrackingService extends Service {
                 .setContentTitle(this.getString(R.string.service_label))
                 .setContentText(
                         getResources().getString(R.string.service_started))
-                .setSmallIcon(R.drawable.images)
+                .setSmallIcon(R.drawable.dartmouth)
                 .setContentIntent(contentIntent).build();
         mNotificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
         notification.flags = notification.flags
@@ -148,7 +148,7 @@ public class TrackingService extends Service {
     }
 
     private void updateWithNewLocation(Location location) {
-        Log.d("Hello", "2LLL " +  location.getLatitude());
+//        Log.d("Hello", "2LLL " +  location.getLatitude());
         if (location != null) {
 
             LatLng latlng = fromLocationToLatLng(location);

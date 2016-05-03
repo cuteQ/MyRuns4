@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.ServiceConnection;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.location.Address;
 import android.location.Criteria;
 import android.location.Geocoder;
@@ -22,12 +23,14 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.Polyline;
@@ -205,12 +208,23 @@ public class MapDisplayActivity extends FragmentActivity implements OnMapReadyCa
                 mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(beginLatlng, 17));
             }
             if (mEnd != mBegin) {
+
+//                LatLngBounds.Builder builder = new LatLngBounds.Builder();
+//                builder.include(endLatlng);
+//
+//                LatLngBounds bounds = builder.build();
+//
+//                int padding = 17; // offset from edges of the map in pixels
+//                CameraUpdate cu = CameraUpdateFactory.newLatLngBounds(bounds, padding);
+
+
                 if (mEnd == null)
                     mEnd = mMap.addMarker(new MarkerOptions().position(endLatlng).icon(BitmapDescriptorFactory.defaultMarker(
                             BitmapDescriptorFactory.HUE_RED)));
                 else {
                     mEnd.setPosition(endLatlng);
-                    mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(beginLatlng, 17));
+//                    mMap.animateCamera(cu);
+                    mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(endLatlng, 17));
                 }
             }
         }
@@ -248,6 +262,8 @@ public class MapDisplayActivity extends FragmentActivity implements OnMapReadyCa
         location.append("Calorie: "); location.append(calories); location.append("\n");
         location.append("Distance: "); location.append(formatDistance); location.append(unit2); location.append("\n");
 
+        myLocationText.setTextColor(Color.BLACK);
+        myLocationText.setTextSize(18);
         myLocationText.setText(location.toString());
     }
 

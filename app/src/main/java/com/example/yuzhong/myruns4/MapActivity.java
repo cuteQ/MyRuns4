@@ -2,6 +2,7 @@ package com.example.yuzhong.myruns4;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.app.FragmentActivity;
@@ -58,6 +59,9 @@ public class MapActivity extends FragmentActivity {
         location.append("Distance: "); location.append(i.getStringExtra("distance")); location.append("\n");
 
         myLocationText = (TextView) findViewById(R.id.myLocationText2);
+
+        myLocationText.setTextColor(Color.BLACK);
+        myLocationText.setTextSize(18);
         myLocationText.setText(location.toString());
 
 //        byte[] location_lists = i.getByteArrayExtra("location_list");
